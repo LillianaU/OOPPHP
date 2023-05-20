@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Clases Abstractas en PHP</title>
+	<style>
+		body {
+			background-color: #99B3F1;
+			font-family: Arial, sans-serif;
+			font-size: 16px;
+			line-height: 1.5;
+			margin: 0;
+			padding: 0;
+		}
+		
+		.container {
+			margin: 0 auto;
+			max-width: 800px;
+			padding: 20px;
+		}
+		
+		h1 {
+			font-size: 36px;
+			margin-bottom: 20px;
+			text-align: center;
+		}
+		
+		p {
+			margin-bottom: 20px;
+			text-align: justify;
+			text-justify: inter-word;
+		}
+		
+		.highlight {
+			background-color: #AEC3C9;
+			font-weight: bold;
+			padding: 5px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Clases Abstractas en PHP</h1>
+		<p>En programación orientada a objetos, una <span class="highlight">clase abstracta</span> es una clase que no puede ser instanciada directamente, sino que sirve como una plantilla para definir características y comportamientos comunes de un conjunto de clases derivadas. Una clase abstracta puede contener <span class="highlight">métodos abstractos</span>, que son métodos que se definen en la clase abstracta pero no se implementan en ella, sino que se dejan para ser implementados en las clases derivadas.</p>
+		<p>Las clases abstractas son útiles cuando se tiene un conjunto de clases relacionadas que comparten características y comportamientos comunes, pero que también tienen diferencias específicas. De esta manera, se puede definir la estructura básica y las operaciones comunes en una clase abstracta y luego crear clases derivadas que implementen las diferencias específicas.</p>
+		<p>En PHP, se define una clase abstracta con la palabra clave <span class="highlight">abstract</span> y se puede contener tanto métodos abstractos como métodos concretos (que tienen implementación). Cuando se define una clase derivada de una clase abstracta, se deben implementar todos los métodos abstractos que se han definido en la clase abstracta para que la clase derivada pueda ser instanciada.
+            <p>
+            Las clases abstractas son útiles cuando se tiene un conjunto de clases relacionadas que comparten características y comportamientos comunes, pero que también tienen diferencias específicas. De esta manera, se puede definir la estructura básica y las operaciones comunes en una clase abstracta y luego crear clases derivadas que implementen las diferencias específicas.</p>
+            <p>
+            Por ejemplo, en el caso de un sistema de gestión de una biblioteca, se puede tener una clase abstracta `Libro` que define los atributos y métodos básicos que todos los libros comparten, como el título, el autor, el número de páginas, etc. Luego, se pueden crear clases concretas como `LibroFisico` y `LibroDigital` que heredan de la clase abstracta `Libro` y que implementan los métodos específicos para cada tipo de libro, como la propiedad "peso" para los libros físicos o la propiedad "formato" para los libros digitales.</p>
+            <p>
+            De esta manera, se evita tener que escribir código duplicado y se puede mantener una estructura clara y ordenada en el código. Además, se facilita la creación de nuevas clases derivadas en el futuro, ya que se puede partir de la estructura definida por la clase abstracta.</p>
+            <p>
+            Otro ejemplo de uso de clases abstractas es en la implementación de APIs o bibliotecas para desarrolladores. En este caso, se pueden definir clases abstractas que proporcionen una interfaz común para los desarrolladores, lo que facilita la integración y el uso de la API o biblioteca en diferentes proyectos.</p>
+            <p>
+            En resumen, las clases abstractas son útiles cuando se tiene un conjunto de clases relacionadas que comparten características y comportamientos comunes, pero que también tienen diferencias específicas, y se desea evitar la duplicación de código y mantener una estructura clara y ordenada en el código. También pueden ser útiles en la implementación de APIs o bibliotecas para desarrolladores.
+        </p>
+        <h1>¿son iguales las clases abstractas y la herencia ?</h1>
+        <p>No, las clases abstractas y la herencia son conceptos diferentes, aunque están relacionados.</p>
+        <p>
+            La herencia es un mecanismo de la programación orientada a objetos que permite a una clase heredar propiedades y métodos de otra clase. La clase que hereda se llama subclase o clase derivada, y la clase de la que hereda se llama superclase o clase base. La subclase puede añadir nuevos atributos y métodos o sobrescribir los atributos y métodos de la superclase.</p>
+            <p>
+            Por otro lado, las clases abstractas son clases que no se pueden instanciar directamente, sino que sirven como una plantilla para definir características y comportamientos comunes de un conjunto de clases derivadas. Las clases abstractas pueden contener métodos abstractos, que son métodos que se definen en la clase abstracta pero no se implementan en ella, sino que se dejan para ser implementados en las clases derivadas.</p>
+            <p>
+            Por lo tanto, la herencia y las clases abstractas son dos conceptos diferentes, aunque relacionados. La herencia se utiliza para compartir y reutilizar código entre clases relacionadas, mientras que las clases abstractas se utilizan para definir una estructura común para un conjunto de clases relacionadas y asegurar que implementen ciertos métodos y comportamientos.</p>
+            <p>
+            Es común utilizar la herencia en conjunto con las clases abstractas, ya que se puede crear una clase abstracta que sirva como superclase de varias clases derivadas que comparten características y comportamientos comunes, y luego utilizar la herencia para heredar esas características y comportamientos a las clases derivadas.</p>
+            <h4>la clase derivada es también conocida como clase hija o subclase. Estos términos se utilizan indistintamente para referirse a una clase que hereda las propiedades y métodos de otra clase, llamada superclase o clase padre.</h4>
+        <h2>Ejemplo</2>
+            <br></br>
+        <textarea id="contenido" name="contenido" cols="107" rows="40">
+            // Clase abstracta Figura
+                    abstract class Figura {
+                    protected $color;
+    
+                public function __construct($color) {
+                     $this->color = $color;
+                }
+    
+                // Método abstracto para calcular el área de la figura
+                 abstract public function calcularArea();
+            }
+
+            // Clase Rectangulo que hereda de Figura
+            class Rectangulo extends Figura {
+                protected $lado1;
+                protected $lado2;
+                
+                public function __construct($color, $lado1, $lado2) {
+                    parent::__construct($color);
+                    $this->lado1 = $lado1;
+                    $this->lado2 = $lado2;
+                }
+                
+                // Implementación del método abstracto para calcular el área del rectángulo
+                public function calcularArea() {
+                    return $this->lado1 * $this->lado2;
+                }
+            }
+
+// Crear objeto Rectangulo y calcular su área
+$rectangulo = new Rectangulo("rojo", 5, 10);
+echo "El área del rectángulo es: ".$rectangulo->calcularArea();
+                </textarea>
+        
+	</div>
+    
+</body>
+</html>
